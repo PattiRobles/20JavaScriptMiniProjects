@@ -5,7 +5,7 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const passwordConfirmation = document.getElementById('password2');
 
-//functions - input error message
+//show error message
 function showError (input, message) {
   const formSection = input.parentElement; // picks the parent element of input element
   formSection.className = 'form-section error' // changes the classes on the element
@@ -13,51 +13,65 @@ function showError (input, message) {
   small.innerText = message;
 }
 
-//function - show success
+//show success
 function showSuccess (input) {
 const formSection = input.parentElement;
 formSection.className = 'form-section success'
 }
 
-//function - check email validity
-function isValidEmail(email) {
+//check email validity (use input for consistency, but will only be email)
+function checkEmail(input) {
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  return regexEmail.test(String(email))
+    if (regexEmail.test(input.value.trim())) {
+      showSuccess(input)
+    } else {
+      showError(input, 'Email provided is not valid' )
+  }
 }
 
+//check required fields
+function checkRequired(inputArray) {
+  inputArray.forEach(function(input){ 
+    if(input.value.trim() === '') {
+    showError(input, `${capitalise(input)} is required`)
+    } else {
+      showSuccess(input)
+    }
+})
+}
+
+//check input length
+function checkLength(input, min, max) {
+  if(input.value.length < min || input.value.length > max) {
+    showError(input, `${capitalise(input)} is out of character range. Min char: ${min} Max char: ${max}`)
+  } else {
+    showSuccess(input)
+  }
+}
+
+//capitalise first letter
+function capitalise(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+//check passwords match
+function checkPasswordsMatch (input1, input2) {
+  if(input1.value != input2.value) {
+    showError(input2, 'Passwords do not match')
+  } else {
+    showSuccess(password, passwordConfirmation)
+  }
+}
 
 //add event listener to the form for submission
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  if (username.value === '') {
-    showError(username, 'Username is required')
-  } else {
-    showSuccess(username)
-  }
-  
-  if (email.value === '') {
-    showError(email, 'Email is required')
-    
-  } 
-  else if (!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid')
-  }else {
-    showSuccess(email)
-  }
-
-  if (password.value === '') {
-    showError(password, 'Password is required')
-  } else {
-    showSuccess(password)
-  }
-
-  if (passwordConfirmation.value === '') {
-    showError(passwordConfirmation, 'Password confirmation is required')
-  } else {
-    showSuccess(passwordConfirmation)
-  }
+  checkRequired([username, email, password, passwordConfirmation]);
+  checkLength(username, 3, 15) //input, min, max
+  checkLength(password, 6, 25)
+  checkEmail(email)
+  checkPasswordsMatch(password, passwordConfirmation)
 
 });
 
