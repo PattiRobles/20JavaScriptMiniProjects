@@ -8,16 +8,20 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie')
 
+populateUI();
+
 let ticketPrice = +movieSelect.value;
 
 //change the selected seatc appearance 2 possible ways:
 //1 - for each to go through elements of the node list that 'seats' is and then add an event listener to each seat OR
 //2 - add an event listener to the container and then make sure that we are clicking in an available seat. This is more efficient
 
+//MOVIE SELECT EVENT
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex)
   localStorage.setItem('selectedMoviePrice', moviePrice)
 }
+
 
 function updateSelecetedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected')
@@ -32,6 +36,26 @@ function updateSelecetedCount() {
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
 }
+
+function populateUI() {
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'))
+  //to change back into an array, this reverses stringify
+
+  if(selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      if(selectedSeats.indexOf(index) > -1) {
+        seat.classList.add('selected')
+      }
+    } )
+  }
+  
+  const selectedMovieIndex =  localStorage.getItem('selectedMovieIndex')
+  //!== null means that it IS in localStorage
+  if(selectedMovieIndex !== null) {
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
+}
+
 
 
 //selection of movie - change event
@@ -49,3 +73,4 @@ container.addEventListener('click', (e) => {
   updateSelecetedCount();
 })
 
+updateSelecetedCount();
