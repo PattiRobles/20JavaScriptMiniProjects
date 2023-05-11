@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #242333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  margin:0;
+}
+
+.movie-container{
+  margin: 20px 0;
+}
+
+.movie-container select{
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px ;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.seat{
+  background-color: #444451;
+  height:12px;
+  width: 15px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.seat.selected {
+  background-color: aqua;
+}
+
+.seat.occupied {
+  background-color: whitesmoke;
+}
+
+.seat:nth-of-type(2) {
+  margin-right: 18px;
+}
+
+.seat:nth-last-of-type(2) {
+  margin-left: 18px;
+}
+
+.showcase .seat:not(.occupied):hover {
+  cursor:default;
+  transform: scale(1);
+}
+.seat:not(.occupied):hover {
+  cursor:pointer;
+  transform: scale(1.2);
+}
+
+/* transform scale - makes elements larger by the rate stated
+:not is a pseudo selector - appliaes to all elem that dont have the class "occupied"
+added showcase seat exception - default */
+
+.showcase {
+  background-color: rgba(0, 0, 0, 0.3);
+  color:#777;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color:#777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.showcase li .small {
+  margin-left: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.screen {
+  background-color: #fff;
+  height:90px;
+  width: 100%;
+  margin: 15px 0 25px 0;
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  /* 0 - where starts from shape, towards right / 3px - how much it goes downwards / 10 - how much in all directios the blus is extended / color and transparency of shadow */
+  transform: rotateX(-45deg)
+}
+
+.row {
+  display:flex;
+}
+
+p.text {
+  margin: 15px 0;
+}
+
+p.text span {
+  color: rgb(8, 103, 227)
+}
