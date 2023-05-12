@@ -8,11 +8,11 @@ const timestamp = document.getElementById('timestamp')
 //FUNCTIONS
 //play and pause
 function toggleVideoStatus() {
-if(video.paused){
-  video.play();
-} else {
-  video.pause()
-}
+  if(video.paused){
+    video.play();
+  } else {
+    video.pause()
+  }
 }
 
 //change between play and pause icons
@@ -25,9 +25,23 @@ function updatePlayIcon() {
   return true;
 }
 
-//update progress in timestamp
+//update progress in scroll bar (will move according to % progress)
 function updateProgress() {
-  return true;
+    progress.value = (video.currentTime / video.duration)*100
+
+    //get min
+    let mins = Math.floor(video.currentTime / 60)
+    if(mins < 10) {
+      mins = '0' + String(mins)
+    }
+    //get secs
+    let secs = Math.floor(video.currentTime % 60)
+    if(secs < 10) {
+      secs = '0' + String(secs)
+    }
+
+    timestamp.innerHTML = `${mins}:${secs}`
+    // timestamp.innerText = timestamp.innerText + ' / '  Math.floor(video.duration - video.currentTime) + ":00"
 }
 
 //stop video
@@ -37,9 +51,9 @@ function stopVideo() {
   video.pause(); //stops at beginning
 }
 
-//video time progression
+//video time progression according to scroll bar movement
 function setVideoProgress() {
-  return true;
+  video.currentTime = (+progress.value * video.duration) / 100
 }
 
 //event listeners

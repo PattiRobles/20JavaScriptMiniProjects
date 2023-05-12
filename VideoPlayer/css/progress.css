@@ -1,0 +1,8 @@
+.controls [type=range] {
+  cursor: pointer;
+  
+}
+
+input [type=range]::-webkit-slider-runnable-track {
+  width: 70%
+}
