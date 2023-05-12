@@ -1,18 +1,27 @@
-//grab elements from DOM
+//DOM elements
 const video = document.getElementById('video')
 const play = document.getElementById('play')
 const stop = document.getElementById('stop')
 const progress = document.getElementById('progress')
 const timestamp = document.getElementById('timestamp')
 
-//functions
+//FUNCTIONS
 //play and pause
 function toggleVideoStatus() {
-return true;
+if(video.paused){
+  video.play();
+} else {
+  video.pause()
+}
 }
 
 //change between play and pause icons
 function updatePlayIcon() {
+  if(video.paused) {
+    play.innerHTML = '<i class="fa-solid fa-play fa-xl"></i>'
+  } else {
+    play.innerHTML = '<i class="fa-solid fa-pause fa-xl"></i>'
+  }
   return true;
 }
 
@@ -23,7 +32,9 @@ function updateProgress() {
 
 //stop video
 function stopVideo() {
-  return true;
+  //there is no stop property in the video api
+  video.currentTime = 0; //returns to beginning
+  video.pause(); //stops at beginning
 }
 
 //video time progression
