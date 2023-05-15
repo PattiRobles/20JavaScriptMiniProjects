@@ -1,0 +1,68 @@
+:root{
+  --primary-color: #5fbaa7;
+}
+*{
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /*aligns in the middle */
+  margin: 0;
+  padding: 20px;
+}
+
+h1{
+  color: var(--primary-color);
+}
+
+p{
+  text-align: center;
+}
+
+.btn {
+  color: #f4f4f4;
+  background: var(--primary-color);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  border:none;
+}
+
+.money-img {
+  width: 150px;
+}
+
+.currency {
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.currency select{
+  padding: 10px 20px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #dedede;
+  font-size: 16px;
+  background: transparent;
+}
+
+.currency input {
+  border: 0;
+  background-repeat: transparent;
+  font-size: 30px;
+  text-align: right;
+}
+
+.swap-currency-container {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+}
