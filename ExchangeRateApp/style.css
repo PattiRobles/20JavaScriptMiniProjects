@@ -65,4 +65,19 @@ p{
   display: flex;
   align-items:center;
   justify-content: space-between;
+  padding: 0 2px;
+}
+
+select:focus, input:focus, button:focus {
+  outline:0;
+}
+
+@media(max-width: 600px) {
+  .currency input {
+    width: 200px;
+  }
+
+  h1{
+    text-align: center;
+  }
 }
