@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: row;
+  
+
+}
