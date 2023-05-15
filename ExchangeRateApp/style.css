@@ -72,6 +72,11 @@ select:focus, input:focus, button:focus {
   outline:0;
 }
 
+#rate {
+color: var(--primary-color);
+font-weight: bold;
+}
+
 @media(max-width: 600px) {
   .currency input {
     width: 200px;
