@@ -40,6 +40,13 @@ currencyElem_2.addEventListener('change', calculate);
 amount1.addEventListener('input', calculate);
 amount2.addEventListener('input', calculate);
 
+swap.addEventListener('click', () => {
+  const temporalVariable = currencyElem_1.value;
+  currencyElem_1.value = currencyElem_2.value;
+  currencyElem_2.value = temporalVariable;
+  calculate();
+})
+
 
 calculate();
 
